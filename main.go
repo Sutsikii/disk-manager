@@ -26,12 +26,18 @@ func diskUsage() {
 	runCommand("df", "-h")
 }
 
+func printHelp() {
+	fmt.Println("Usage: disk-manager <command>")
+	fmt.Println("Commands:")
+	fmt.Println("  list    - Liste des disques")
+	fmt.Println("  usage   - Affiche l'utilisation du disque")
+	fmt.Println("  help    - Affiche cette aide")
+}
+
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: disk-manager <command>")
-		fmt.Println("Commands:")
-		fmt.Println("  list    - Liste des disques")
-		fmt.Println("  usage   - Affiche l'utilisation du disque")
+		fmt.Println("Erreur: Aucune commande fournie.")
+		printHelp()
 		os.Exit(1)
 	}
 
@@ -40,12 +46,11 @@ func main() {
 		listDisks()
 	case "usage":
 		diskUsage()
+	case "help":
+		printHelp()
 	default:
-		fmt.Println("Commande non reconnue:", os.Args[1])
-		fmt.Println("Usage: disk-manager <command>")
-		fmt.Println("Commands:")
-		fmt.Println("  list    - Liste des disques")
-		fmt.Println("  usage   - Affiche l'utilisation du disque")
+		fmt.Printf("Commande non reconnue: %s\n", os.Args[1])
+		fmt.Println("Veuillez utiliser `disk-manager help` pour voir les commandes disponibles.")
 		os.Exit(1)
 	}
 }
