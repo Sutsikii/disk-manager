@@ -42,5 +42,10 @@ func main() {
 		diskUsage()
 	default:
 		fmt.Println("Commande non reconnue:", os.Args[1])
+		fmt.Println("Usage: disk-manager <command>")
+		fmt.Println("Commands:")
+		fmt.Println("  list    - Liste des disques")
+		fmt.Println("  usage   - Affiche l'utilisation du disque")
+		os.Exit(1)
 	}
 }
